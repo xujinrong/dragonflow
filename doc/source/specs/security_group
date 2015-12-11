@@ -1,0 +1,19 @@
+Security Group
+
+https://blueprints.launchpad.net/dragonflow/+spec/security-group-dragonflow-driver
+This blueprint describe how to implement Security Group in Dragonflow.
+
+Problem Description
+
+Currently, openstack neutron use iptables to implement security group. 
+Because of the lack of connet tracking ability of ovs, we should insert a linux bridge into the vm and the ovs brige.
+It brings unneccessary overhead into the data plane, because the packet from vm shoud go through network stack twice instead of once to reach the outside world. 
+Now, the ovs has the ability to track the connection of packets, with leverage of which, we can "translate" the seurity group rules into openflow tables and install them in ovs to implement packet manipulation. 
+As a result, linux bridge is totally removed and we gain a better efficiency and simplicity and uniformity.
+
+Proposed Change
+
+
+
+References
+
